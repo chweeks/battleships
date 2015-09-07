@@ -37,6 +37,12 @@ describe Board do
       expect(subject.grid[0][1]).to eq(ship)
       expect(subject.grid[0][0]).to eq(ship)
     end
+
+    it 'raise error if asked to place ship out of the board' do
+      ship = double(:ship, size: 5)
+      expect{subject.place(ship, [0,0], "east")}.to raise_error
+       "outside"
+    end
   end
 
 end
