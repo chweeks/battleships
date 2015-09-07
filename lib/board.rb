@@ -41,7 +41,7 @@ class Board
     if grid[x][y] == 'O'
       grid[x][y] = 'M'
     elsif grid[x][y] == 'S'
-      grid[x][y] == 'X'
+      grid[x][y] = 'X'
     end
   end
 
@@ -62,3 +62,17 @@ class Board
       xy
     end
 end
+
+board1 = Board.new
+board2 = Board.new
+board2.place(6,[0,0],'east')
+board2.fire(0,0)
+board2.fire(1,0)
+board1.fire(1,0)
+board2.show
+
+
+
+
+
+

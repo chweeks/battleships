@@ -75,7 +75,7 @@ describe Board do
         ship = 2
         subject.place(ship, [1,0], "east")
         subject.fire(0,0)
-        expect(subject.grid[0,0]).to eql 'M'
+        expect(subject.grid[0][0]).to eql 'M'
       end
     end
   end
