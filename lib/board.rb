@@ -13,6 +13,10 @@ class Board
   	x < 0 || y < 0 || x >= grid.size || y >= grid[0].size
   end
 
+  def overlap?(x,y)
+  	grid[x][y] != 0
+  end
+
   def array_xy(x,y)
     xy = []
     xy << x
@@ -25,6 +29,7 @@ class Board
     co_ords = []
     ship.size.times do
       fail 'outside' if outside?(x,y)
+      fail 'overlap' if overlap?(x,y)
       case orientation
         when 'north'
           xy = array_xy(x,y)

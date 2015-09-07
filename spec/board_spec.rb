@@ -41,7 +41,19 @@ describe Board do
     it 'raise error if asked to place ship out of the board' do
       ship = double :ship, size: 5
       expect{subject.place(ship, [0,0], "east")}.to raise_error "outside"
+    end
+
+    it 'ship not place when error raised' do
+      ship = double :ship, size: 5
+      expect{subject.place(ship, [0,0], "east")}.to raise_error "outside"
       expect(subject.grid.include? ship).to be false
+    end
+
+    it 'raise error when trying to place a ship overlapping another ship' do
+      ship1 = double :ship, size: 3
+      ship2 = double :ship, size: 3
+      subject.place(ship1,[0,0],"south")
+      expect{subject.place(ship2,[1,0],"east")}.to raise_error "overlap"
     end
   end
 end
