@@ -3,10 +3,12 @@ class Board
   attr_accessor :grid
 
   def initialize
-    @grid = [[0,0,0,0],
-    				 [0,0,0,0],
-    				 [0,0,0,0],
-    				 [0,0,0,0]]
+    @grid = []
+    10.times{@grid << [0,0,0,0,0,0,0,0,0,0]}
+  end
+
+  def show
+  	grid.each{|row| p row}
   end
 
   def outside?(x,y)
@@ -14,7 +16,7 @@ class Board
   end
 
   def overlap?(x,y)
-  	grid[x][y] != 0
+  	grid[x][y] != ''
   end
 
   def array_xy(x,y)
@@ -49,3 +51,6 @@ class Board
     co_ords.each{|co_ord| grid[co_ord[0]][co_ord[1]] = ship}
   end
 end
+
+
+
