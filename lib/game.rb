@@ -11,13 +11,13 @@ class Game
     @grid_size = grid_size
   end
 
-  # def out_of_bounds?
-  # ship.cells.each do |coordinates|
-  #   coordinates.each do |i|
-  #     return false if i > (size - 1)
-  #   end
-
-  # end
+  def out_of_bounds?(boat)
+    boat.boat_position.each do |coords|
+      coords.each do |coord|
+        fail 'ship out of bounds' if coord > (grid_size - 1)
+      end
+    end
+  end
 
   def create_boats(player)
     @boat_sizes.each do |size|
@@ -28,6 +28,7 @@ class Game
       puts "Enter orientation of large boat"
       orientation = gets.chomp
       boat = Boat.new(size, y, x, orientation)
+      out_of_bounds?(boat)
       player.add_boat(boat)
       end
   end

@@ -4,6 +4,8 @@ describe Player do
 
   let(:boat) { double :boat, boat_position: [[0,0],[0,1]] }
 
+  let(:boat2) { double :boat, boat_position: [[2,0],[2,1]] }
+
   it { is_expected.to respond_to(:harbor) }
 
   it { is_expected.to respond_to(:add_boat).with(1).arguments }
@@ -39,6 +41,14 @@ describe Player do
       subject.add_boat(boat)
       subject.launch(subject, [0,0])
       expect(subject.hits.include?([0,0])).to be true
+    end
+
+    it 'boat removed from harbor on final hit' do
+      subject.add_boat(boat)
+      subject.add_boat(boat2)
+      subject.launch(subject, [0,0])
+      subject.launch(subject, [0,1])
+      expect(subject.harbor.include?(boat)).to be false
     end
   end
 
