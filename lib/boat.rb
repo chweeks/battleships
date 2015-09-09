@@ -20,6 +20,6 @@ class Boat
   end
 
   def destroyed?
-    self.boat_position.empty?
+    boat_position.empty?
   end
 end

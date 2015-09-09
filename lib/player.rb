@@ -24,10 +24,8 @@ class Player
          hit(coord)
          boat.boat_position.delete(coord)
          harbour.delete(boat) if boat.destroyed?
-         break
       else
          miss(coord)
-         break
       end
     end
   end
@@ -38,6 +36,7 @@ class Player
 
   def hit(coord)
     hits << coord
+
   end
 
   def miss(coord)
@@ -48,7 +47,7 @@ class Player
 
   def overlapping?(boat)
     harbour.each do |ship|
-      fail 'ship overlapping' if ship.boat_position == boat.boat_position
+      fail 'ship overlapping' unless (ship.boat_position & boat.boat_position).empty?
     end
   end
 
