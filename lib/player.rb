@@ -16,10 +16,11 @@ class Player
     @harbor << boat
   end
 
-  def launch(player, coord)
+  def fire(player, coord)
     player.harbor.each do |boat|
-      boat.boat_position.include?(coord) ? hit(coord) : miss(coord)
-      boat.boat_position.delete(coord)
+    boat.boat_position.include?(coord) ? hit(coord) : miss(coord)
+    boat.boat_position.delete(coord)
+    harbour.delete(boat) if boat.destroyed?
     end
   end
 
