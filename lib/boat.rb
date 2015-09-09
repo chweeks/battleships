@@ -5,11 +5,8 @@ class Boat
   def initialize(size, y, x, orientation)
     @boat_position = []
     size.times do
-<<<<<<< HEAD
       fail 'ship out of bounds' if x > 9 || x < 0 || y > 9 || y < 0
-=======
       fail 'ship out of bounds' if x > 2 || x < 0 || y > 2 || y < 0
->>>>>>> 336d3c2599939d56cefaee1c284674457aadedc2
       boat_position << [y,x]
       case orientation
         when 'north'

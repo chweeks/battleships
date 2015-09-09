@@ -2,12 +2,13 @@ class Game
 
   attr_accessor :player_1
   attr_accessor :player_2
+  attr_reader :grid_size
 
-
-  def initialize
+  def initialize(grid_size = 10)
     @player_1 = Player.new
     @player_2 = Player.new
     @boat_sizes = [2, 1, 1]
+    @grid_size = grid_size
   end
 
   def create_boats(player)
@@ -22,7 +23,4 @@ class Game
       player.add_boat(boat)
       end
   end
-
-
-
 end
