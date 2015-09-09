@@ -11,6 +11,14 @@ class Game
     @grid_size = grid_size
   end
 
+  # def out_of_bounds?
+  # ship.cells.each do |coordinates|
+  #   coordinates.each do |i|
+  #     return false if i > (size - 1)
+  #   end
+
+  # end
+
   def create_boats(player)
     @boat_sizes.each do |size|
       puts "Enter y coordinate of large boat"

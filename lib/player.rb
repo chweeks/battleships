@@ -38,4 +38,5 @@ class Player
       fail 'ship overlapping' if ship.boat_position == boat.boat_position
     end
   end
+
 end
