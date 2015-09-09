@@ -8,7 +8,7 @@ describe Boat do
 
   it 'Creates ship with correct size and coordinates' do
     boat = Boat.new(3, 0, 0, 'north')
-    expect(boat.boat_position).to eql [[0,0],[1,0],[2,0]]
+    expect(boat.boat_position).to eql [[0,0],[0,1],[0,2]]
   end
 
   it 'informs player when boat has been destroyed' do
