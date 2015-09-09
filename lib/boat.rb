@@ -2,15 +2,15 @@ class Boat
 
   attr_accessor :boat_position
 
-  def initialize(size, y, x, orientation)
+  def initialize(size, x, y, orientation)
     @boat_position = []
     size.times do
-      boat_position << [y,x]
+      boat_position << [x,y]
       case orientation
         when 'north'
-          y -= 1
-        when 'south'
           y += 1
+        when 'south'
+          y -= 1
         when 'east'
           x += 1
         when 'west'

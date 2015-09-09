@@ -7,7 +7,7 @@ describe Boat do
   end
 
   it 'Creates ship with correct size and coordinates' do
-    boat = Boat.new(3, 0, 0, 'south')
+    boat = Boat.new(3, 0, 0, 'north')
     expect(boat.boat_position).to eql [[0,0],[1,0],[2,0]]
   end
 
