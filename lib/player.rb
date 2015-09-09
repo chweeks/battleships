@@ -1,41 +1,47 @@
+require_relative 'boat.rb'
+
 class Player
 
-  attr_accessor :harbor
+  attr_accessor :harbour
   attr_accessor :add_boat
   attr_reader :hits
   attr_reader :misses
 
   def initialize
-    @harbor = []
+    @harbour = []
     @hits = []
     @misses = []
   end
 
   def add_boat(boat)
     overlapping?(boat)
-    @harbor << boat
+    harbour << boat
   end
 
   def fire(player, coord)
-    player.harbor.each do |boat|
+    player.harbour.each do |boat|
     boat.boat_position.include?(coord) ? hit(coord) : miss(coord)
     boat.boat_position.delete(coord)
     harbour.delete(boat) if boat.destroyed?
     end
   end
 
+  def loser?
+    harbour.empty?
+  end
+
   def hit(coord)
-    @hits << coord
+    hits << coord
   end
 
   def miss(coord)
-    @misses << coord
+    misses << coord if !misses.include?(coord)
   end
 
   private
 
   def overlapping?(boat)
-    @harbor.each do |ship|
+    harbour.each do |ship|
       fail 'ship overlapping' if ship.boat_position == boat.boat_position
     end
   end

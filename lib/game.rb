@@ -1,3 +1,6 @@
+require_relative 'player.rb'
+require_relative 'boat.rb'
+
 class Game
 
   attr_accessor :player_1
@@ -14,7 +17,7 @@ class Game
   def out_of_bounds?(boat)
     boat.boat_position.each do |coords|
       coords.each do |coord|
-        fail 'ship out of bounds' if coord > (grid_size - 1)
+        fail 'ship out of bounds' if coord > (grid_size - 1) || coord < 0
       end
     end
   end
@@ -22,9 +25,9 @@ class Game
   def create_boats(player)
     @boat_sizes.each do |size|
       puts "Enter y coordinate of large boat"
-      y = gets.chomp
+      y = gets.chomp.to_i
       puts "Enter x coordinate of large boat"
-      x = gets.chomp
+      x = gets.chomp.to_i
       puts "Enter orientation of large boat"
       orientation = gets.chomp
       boat = Boat.new(size, y, x, orientation)
