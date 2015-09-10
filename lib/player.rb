@@ -2,12 +2,11 @@ require_relative 'boat.rb'
 
 class Player
 
-  attr_accessor :harbour
-  attr_accessor :add_boat
-  attr_reader :hits
-  attr_reader :misses
+  attr_accessor :harbour, :add_boat
+  attr_reader :hits, :misses, :name
 
-  def initialize
+  def initialize(name)
+    @name = name
     @harbour = []
     @hits = []
     @misses = []
@@ -23,7 +22,8 @@ class Player
       if boat.boat_position.include?(coord)
          hit(coord)
          boat.boat_position.delete(coord)
-         harbour.delete(boat) if boat.destroyed?
+         player.harbour.delete(boat) if boat.destroyed?
+         break
       else
          miss(coord)
       end

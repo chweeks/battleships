@@ -5,7 +5,7 @@ describe Player do
   let(:boat) { double :boat, boat_position: [[0,0],[0,1]], destroyed?: false }
   let(:sunk_boat) { double :boat, boat_position: [[2,0],[2,1]], destroyed?: true }
 
-  subject(:player) { Player.new }
+  subject(:player) { Player.new('Player 1') }
 
   it { is_expected.to respond_to(:harbour) }
 
