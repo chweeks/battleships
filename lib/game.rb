@@ -23,11 +23,10 @@ class Game
 
   def create_boats(player)
     @boat_sizes.each do |size|
-      puts "Enter x coordinate of boat with length #{size}"
+      puts "Enter coordinates of boat with length #{size}, eg. A1"
       x = gets.chomp.to_i
-      puts "Enter y coordinate of boat with length #{size}"
       y = gets.chomp.to_i
-      puts "Enter orientation of boat with length #{size}"
+      puts "Enter orientation of boat with length #{size} eg. north"
       orientation = gets.chomp
       boat = Boat.new(size, x, y, orientation)
       out_of_bounds?(boat)

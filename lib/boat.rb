@@ -6,16 +6,10 @@ class Boat
     @boat_position = []
     size.times do
       boat_position << [x,y]
-      case orientation
-        when 'north'
-          y += 1
-        when 'south'
-          y -= 1
-        when 'east'
-          x += 1
-        when 'west'
-          x -= 1
-      end
+      y += 1 if orientation.downcase == 'north'
+      y -= 1 if orientation.downcase == 'south'
+      x += 1 if orientation.downcase == 'east'
+      x -= 1 if orientation.downcase == 'west'
     end
   end
 
