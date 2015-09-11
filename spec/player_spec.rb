@@ -2,8 +2,8 @@ require 'player'
 
 describe Player do
 
-  let(:boat) { double :boat, boat_position: [[0,0],[0,1]], destroyed?: false }
-  let(:sunk_boat) { double :boat, boat_position: [[2,0],[2,1]], destroyed?: true }
+  let(:boat) { double :boat, boat_position: ['A1','A2'], destroyed?: false }
+  let(:sunk_boat) { double :boat, boat_position: ['B1','B2'], destroyed?: true }
 
   subject(:player) { Player.new('Player 1') }
 
@@ -31,8 +31,8 @@ describe Player do
 
     it 'hits boat if coords match' do
       player.add_boat(boat)
-      player.fire(player, [0,0])
-      expect(boat.boat_position).to eql([[0,1]])
+      player.fire(player, 'A1')
+      expect(boat.boat_position).to eql(['A2'])
     end
 
   end
@@ -43,8 +43,8 @@ describe Player do
 
     it 'should add coordinates to hit array' do
       player.add_boat(boat)
-      player.fire(player, [0,0])
-      expect(player.hits.include?([0,0])).to be true
+      player.fire(player, 'A1')
+      expect(player.hits.include?('A1')).to be true
     end
 
     it 'boat removed from harbour on final hit' do
@@ -60,13 +60,13 @@ describe Player do
 
     it 'should add coordinates to miss array' do
       player.add_boat(boat)
-      player.fire(player, [0,2])
-      expect(player.misses.include?([0,2])).to be true
+      player.fire(player, 'B2')
+      expect(player.misses.include?('B2')).to be true
     end
 
     it 'only adds coordinates that don\'t already exist' do
       allow(player).to receive(:harbour).and_return([boat])
-      2.times{ player.fire(player,[0,2]) }
+      2.times{ player.fire(player, 'B2') }
       expect(player.misses.length).to be 1
     end
 

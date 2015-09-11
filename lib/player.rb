@@ -1,5 +1,3 @@
-require_relative 'boat.rb'
-
 class Player
 
   attr_accessor :harbour, :add_boat
@@ -17,15 +15,15 @@ class Player
     harbour << boat
   end
 
-  def fire(player, coord)
+  def fire(player, grid_ref)
     player.harbour.each do |boat|
-      if boat.boat_position.include?(coord)
-         hit(coord)
-         boat.boat_position.delete(coord)
+      if boat.boat_position.include?(grid_ref)
+         hit(grid_ref)
+         boat.boat_position.delete(grid_ref)
          player.harbour.delete(boat) if boat.destroyed?
          break
       else
-         miss(coord)
+         miss(grid_ref)
       end
     end
   end
@@ -34,13 +32,12 @@ class Player
     harbour.empty?
   end
 
-  def hit(coord)
-    hits << coord
-
+  def hit(grid_ref)
+    hits << grid_ref
   end
 
-  def miss(coord)
-    misses << coord if !misses.include?(coord)
+  def miss(grid_ref)
+    misses << grid_ref if !misses.include?(grid_ref)
   end
 
   private

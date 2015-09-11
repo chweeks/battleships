@@ -14,21 +14,22 @@ class Game
   end
 
   def out_of_bounds?(boat)
-    boat.boat_position.each do |coords|
-      coords.each do |coord|
-        fail 'ship out of bounds' if coord > (grid_size - 1) || coord < 0
-      end
+    boat.boat_position.each do |grid_ref|
+      grid_ref_split = grid_ref.split('', 2)
+      letter = (grid_ref_split[0])
+      number = (grid_ref_split[1]).to_i
+      fail 'ship out of bounds' if letter > 'J' || letter < 'A' ||
+       number > 10 || number < 1
     end
   end
 
   def create_boats(player)
     @boat_sizes.each do |size|
       puts "Enter coordinates of boat with length #{size}, eg. A1"
-      x = gets.chomp.to_i
-      y = gets.chomp.to_i
+      grid_ref = gets.chomp
       puts "Enter orientation of boat with length #{size} eg. north"
       orientation = gets.chomp
-      boat = Boat.new(size, x, y, orientation)
+      boat = Boat.new(size, grid_ref, orientation)
       out_of_bounds?(boat)
       player.add_boat(boat)
     end
@@ -36,11 +37,9 @@ class Game
 
   def turn(agressor, victim)
     puts "#{agressor.name}'s turn"
-    puts "Enter x coordinate for firing"
-    x = gets.chomp.to_i
-    puts "Enter y coordinate for firing"
-    y = gets.chomp.to_i
-    agressor.fire(victim, [x,y])
+    puts "Enter grid ref for firing"
+    grid_ref = gets.chomp
+    agressor.fire(victim, grid_ref)
     puts "HITS: #{agressor.hits}"
     puts "MISSES: #{agressor.misses}"
   end

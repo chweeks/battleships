@@ -18,7 +18,7 @@ describe Game do
 
     it 'raises error when boat is out of bounds' do
       game2 = Game.new(2)
-      boat = double :boat, boat_position: [[0,1], [0,2], [0,3]]
+      boat = double :boat, boat_position: ['A1', 'A2', 'A11']
       expect { game2.out_of_bounds?(boat) }.to raise_error 'ship out of bounds'
     end
   end
