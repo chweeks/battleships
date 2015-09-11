@@ -11,6 +11,7 @@ class Game
     @player_2 = Player.new('Player 2')
     @boat_sizes = [2, 1, 1]
     @grid_size = grid_size
+    self.start_game
   end
 
   def out_of_bounds?(boat)
